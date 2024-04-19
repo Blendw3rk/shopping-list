@@ -59,6 +59,27 @@ function addItemToDOM(item) {
 
   // Add li to the DOM
   itemList.appendChild(li);
+
+  // Sort items alphabetically
+  sortItemsAlphabetically();
+}
+
+// Funktion zur alphabetischen Sortierung der Elemente
+function sortItemsAlphabetically() {
+  const items = Array.from(itemList.getElementsByTagName('li'));
+  const sortedItems = items.sort((a, b) => {
+    return a.textContent.localeCompare(b.textContent);
+  });
+
+  // Clear existing list
+  while (itemList.firstChild) {
+    itemList.removeChild(itemList.firstChild);
+  }
+
+  // Append sorted items to the list
+  sortedItems.forEach((item) => {
+    itemList.appendChild(item);
+  });
 }
 
 function createButton(classes) {
